@@ -1,3 +1,11 @@
 venv/
 .venv/
 .env
+__pycache__/
+*.py[cod]
+.tools/
+tmp/
+models/*.onnx
+data/db/*.json
+data/enrollments/
+.pytest_cache/
