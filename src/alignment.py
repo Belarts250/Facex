@@ -32,7 +32,32 @@ def align_face(frame, points):
                           flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_CONSTANT)
 
 
+def main():
+    from .landmarks import FaceDetector, draw_face
+    from .workflow import camera, exiting, parser, read_frame
+
+    args = parser("Preview 5-point face alignment").parse_args()
+    detector = FaceDetector(args.detector)
+    window = "Camera"
+
+    with camera(args.camera) as cap:
+        while True:
+            frame = read_frame(cap)
+            faces = detector.detect(frame)
+
+            for face in faces:
+                draw_face(frame, face)
+
+            if len(faces) == 1:
+                aligned = align_face(frame, faces[0].points)
+                cv2.imshow("Aligned Face 112x112", aligned)
+
+            cv2.imshow(window, frame)
+
+            if exiting(window, cv2.waitKey(1) & 0xff):
+                break
+
+
 if __name__ == "__main__":
-    from .harr_5pt import main
     from .workflow import run
     run(main)
