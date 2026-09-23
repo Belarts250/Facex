@@ -1,7 +1,7 @@
 import cv2
 
 
-CAMERA_INDEX = 0
+CAMERA_INDEX = 2
 
 
 def main():

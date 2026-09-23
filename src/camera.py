@@ -3,7 +3,7 @@ import time
 import cv2
 
 
-CAMERA_INDEX = 0
+CAMERA_INDEX = 2
 FRAME_WIDTH = 640
 FRAME_HEIGHT = 480
 
